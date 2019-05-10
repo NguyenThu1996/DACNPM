@@ -40,6 +40,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <input type="text" placeholder="Địa Chỉ" Name="" required="" id="diachi">
                             <input type="number" placeholder="Số điện thoại" Name="" required="" id="sdt"> 
                             <input type="text" placeholder="Tên ngân hàng" Name="" required="" id="tennganhang">
+                            <input type="number" placeholder="Số điện thoại" Name="" required="" id="sotaikhoan"> 
 
                              <input type="button" value="Submit" id='submit'>
 
@@ -78,29 +79,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           var email = $('#email').val();
           var matkhau = $('#matkhau').val();
           var matkhauxacthuc = $('#matkhauxacthuc').val();
-          var ten = $('#ten').val();
-          var sonha = $('#sonha').val();
-          var phuong = $('#phuong').val();
-          var quan = $('#quan').val();
-          var tinh = $('#tinh').val();
+          var tenstore = $('#tenstore').val();
+          var chusohuu = $('#chusohuu').val();
+          var diachi = $('#diachi').val();
+          var tennganhang = $('#tennganhang').val();
+          var sotaikhoan = $('#sotaikhoan').val();
           var sdt = $('#sdt').val();
           console.log(email);
 
           var request = new XMLHttpRequest();
-          var url = 'http://clothes-vn.enscaled.sg/user/register?email='+email+'&password='+matkhau+'&fullname='+ten+'&phone='+sdt+'&street='+sonha+'&ward='+phuong+'&district='+quan+'&city='+tinh; 
-          request.open('post', url, true)
+          var data = {};
+          data.email = email;
+          data.password = matkhau;
+          data.store_name = tenstore;
+          data.storeowner_name = chusohuu;
+          data.address = diachi;
+          data.store_id = 120;
+          data.phone = sdt;
+          data.bank_name = tennganhang;
+          data.bank_id = sotaikhoan;
+          debugger
+          var json = JSON.stringify(data);
+          var url = 'http://clothes-vn.enscaled.sg/store/register'; 
+          request.open('post', url, true);
+          request.setRequestHeader("Accept", "application/json");
+          request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
           request.onload = function() {
               var data = JSON.parse(this.response);
               if(request.status >= 200 && request.status < 400){
                 console.log("Success");
-                window.location.href = "file:///C:/Users/Admin/Desktop/DACNPM/login.html";
+                window.location.href = "file:///C:/Users/Admin/Desktop/DACNPM/product.html";
               }else{
+                debugger
                 console.log("Register Faild");
                 console.log(data.error);
               }
           }
 
-          request.send();
+          request.send(json);
       })
   });
 </script>
