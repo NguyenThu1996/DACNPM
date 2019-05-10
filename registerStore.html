@@ -1,0 +1,111 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dang ky</title>
+ <!-- custom-theme -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Elegant Login Form Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //custom-theme  -->
+<link rel="stylesheet" href="css/style.css">
+   <!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  </head>
+  <body>
+<div class="login-form w3_form">
+  <!--  Title-->
+      <div class="login-title w3_title">
+           <h1>Đăng ký Store</h1>
+      </div>
+           <div class="login w3_login">
+                <h2 class="login-header w3_header">Đăng ký Store</h2>
+				    <div class="w3l_grid">
+                        <form class="login-container" action="" method="post">
+                             <input type="email" placeholder="Email" Name="Email" required="" id="email" >
+                             <input type="password" placeholder="mật khẩu" Name="password" required="" id="matkhau">
+                             <input type="password" placeholder="nhập lại mật khẩu" Name="password" required="" id="matkhauxacthuc" >
+                            <input type="text" placeholder="Chủ sở hữu" Name="" required="" id="chusohuu">
+                            <input type="text" placeholder="Tên Store" Name="họ tên" required="" id="tenstore">
+                            <input type="text" placeholder="Địa Chỉ" Name="" required="" id="diachi">
+                            <input type="number" placeholder="Số điện thoại" Name="" required="" id="sdt"> 
+                            <input type="text" placeholder="Tên ngân hàng" Name="" required="" id="tennganhang">
+
+                             <input type="button" value="Submit" id='submit'>
+
+                        </form>
+<div class="second-section w3_section">
+     <div class="bottom-header w3_bottom">
+          <h3>Hoặc</h3>
+     </div>
+     <div class="social-links w3_social">
+         <ul>
+         <!-- facebook -->
+             <li> <a class="facebook" href="#" target="blank"><i class="fa fa-facebook"></i></a></li>
+
+         <!-- twitter -->
+             <li> <a class="twitter" href="#" target="blank"><i class="fa fa-twitter"></i></a></li>
+
+         <!-- google plus -->
+             <li> <a class="googleplus" href="#" target="blank"><i class="fa fa-google-plus"></i></a></li>
+       </ul>
+   </div>
+</div>
+                 
+
+ </div>
+       </div>
+  
+</div>
+
+</body>
+</html>
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('#submit').on('click', function() {
+          var email = $('#email').val();
+          var matkhau = $('#matkhau').val();
+          var matkhauxacthuc = $('#matkhauxacthuc').val();
+          var ten = $('#ten').val();
+          var sonha = $('#sonha').val();
+          var phuong = $('#phuong').val();
+          var quan = $('#quan').val();
+          var tinh = $('#tinh').val();
+          var sdt = $('#sdt').val();
+          console.log(email);
+
+          var request = new XMLHttpRequest();
+          var url = 'http://clothes-vn.enscaled.sg/user/register?email='+email+'&password='+matkhau+'&fullname='+ten+'&phone='+sdt+'&street='+sonha+'&ward='+phuong+'&district='+quan+'&city='+tinh; 
+          request.open('post', url, true)
+          request.onload = function() {
+              var data = JSON.parse(this.response);
+              if(request.status >= 200 && request.status < 400){
+                console.log("Success");
+                window.location.href = "file:///C:/Users/Admin/Desktop/DACNPM/login.html";
+              }else{
+                console.log("Register Faild");
+                console.log(data.error);
+              }
+          }
+
+          request.send();
+      })
+  });
+</script>
+
+
+
+
+

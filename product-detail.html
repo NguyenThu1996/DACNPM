@@ -111,16 +111,16 @@
 								<a href="#">Sp giảm giá</a>
 							</li>
 
-							<li>
-								<a href="#">Đăng ký bán hàng</a>
+							<li class="dangnhap">
+								<a href="register.html">Đăng ký</a>
 							</li>
 
-							<li>
-								<a href="#">Đăng ký</a>
+							<li class="dangnhap">
+								<a href="login.html">Đăng nhập</a>
 							</li>
 
-							<li>
-								<a href="#">Đăng nhập</a>
+							<li class="dangxuat">
+								<a href="">Đăng xuất</a>
 							</li>
 
 						</ul>
@@ -939,7 +939,7 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Shop fashion hot line (+84)988234076
 					</p>
 
 					<div class="p-t-27">
@@ -1002,7 +1002,7 @@
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> 5friend  <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
@@ -1295,6 +1295,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						$(option).text(size.size_name);
 						$(selectOption).append(option)
 					});
+						
 
 					
 				}else {
@@ -1304,6 +1305,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 			request.send();
 		});
+		var user_id = localStorage.getItem('user_id');
+		if(user_id !== ""){
+			$('.dangnhap').css('display', 'none');
+			$('.dangxuat').css('display', 'block');
+		}else{
+			$('.dangxuat').css('display', 'none');
+			$('.dangnhap').css('display', 'block');
+		}
+		$('.dangxuat').on('click', function() {
+			localStorage.setItem('user_id', "");
+			window.reload();
+		})
 	</script>
 
 </body>

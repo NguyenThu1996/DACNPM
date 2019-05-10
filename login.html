@@ -1,0 +1,103 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dang nhap</title>
+ <!-- custom-theme -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Elegant Login Form Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //custom-theme  -->
+<link rel="stylesheet" href="css/style.css">
+   <!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  </head>
+  <body>
+<div class="login-form w3_form">
+  <!--  Title-->
+      <div class="login-title w3_title">
+           <h1>From Đăng nhập</h1>
+      </div>
+           <div class="login w3_login">
+                <h2 class="login-header w3_header">Đăng nhập</h2>
+				    <div class="w3l_grid">
+                        <form class="login-container" method="post" enctype="multipart/form-data">
+                             <input type="email" placeholder="Email" Name="Email" required=""  id="email">
+                             <input type="password" placeholder="Password" Name="password" required="" id="password">
+                             <input type="button" id="submit" value="Submit">
+                        </form>
+<div class="second-section w3_section">
+     <div class="bottom-header w3_bottom">
+          <h3>Hoặc</h3>
+     </div>
+     <div class="social-links w3_social">
+         <ul>
+         <!-- facebook -->
+             <li> <a class="facebook" href="#" target="blank"><i class="fa fa-facebook"></i></a></li>
+
+         <!-- twitter -->
+             <li> <a class="twitter" href="#" target="blank"><i class="fa fa-twitter"></i></a></li>
+
+         <!-- google plus -->
+             <li> <a class="googleplus" href="#" target="blank"><i class="fa fa-google-plus"></i></a></li>
+       </ul>
+   </div>
+</div>
+                 
+<div class="bottom-text w3_bottom_text">
+      
+      <h4> <a href="#">Quên tài khoản</a></h4>
+</div>
+ </div>
+       </div>
+  
+</div>
+
+</body>
+</html>
+
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script> 
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('#submit').on('click', function() {
+          var email = $('#email').val();
+          var password = $('#password').val();
+          var data = {};
+          data.email = email;
+          data.password = password;
+          var json = JSON.stringify(data);
+
+          var request = new XMLHttpRequest();
+          var url = 'http://clothes-vn.enscaled.sg/user/login';
+          request.open('post', url, true);
+          request.setRequestHeader("Accept", "application/json");
+          request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+          request.onload = function() {
+              var data = JSON.parse(this.response);
+              if(request.status >= 200 && request.status < 400){
+                debugger
+                localStorage.setItem('user_id', data.user_id);
+                localStorage.setItem('user_name', data.fullname);
+                console.log("Success");
+                window.location.href = "file:///C:/Users/Admin/Desktop/DACNPM/product.html";
+              }else{
+                debugger
+                console.log("Register Faild");
+                console.log(data.error);
+              }
+          }
+
+          request.send(json);
+      })
+  });
+</script>
