@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Product Detail</title>
@@ -162,7 +162,7 @@
 		</div>
 	</header>
 
-	<!-- Cart -->
+<!-- Cart -->
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
@@ -246,7 +246,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- breadcrumb -->
 	<div class="container">
@@ -1172,6 +1171,65 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> 5frie
 			localStorage.setItem('user_id', "");
 			window.reload();
 		})
+
+		$('.js-addcart-detail').on('click', function() {
+			var quantity = $('.num-product').val();
+			var cost = $('.price').text();
+			var name = $('.js-name-detail').text();
+			var image = $('.item-slick3-img-0').attr('src');
+			var urlParams = new URLSearchParams(window.location.search);
+			var product_id = urlParams.get("id");
+			// var name = $('.js-name-detail').text();
+			var product = {
+				id: product_id,
+				quantity: +quantity,
+				cost: cost,
+				name: name,
+				image: image
+			}
+			var carts = JSON.parse(localStorage.getItem('carts')) || [];
+			if(carts.length > 0){
+				for(var i = 0; i < carts.length; i++) {
+					if(carts[i].id === product.id) {
+						carts[i].quantity += +product.quantity;
+					}else{
+						carts.push(product);
+					}
+				};
+			}else{
+				carts.push(product);
+			}
+			localStorage.setItem('carts', JSON.stringify(carts));
+			window.reload();
+		});
+
+		window.onload = function() {
+			var ul = $('.header-cart-wrapitem');
+			$(ul).html("");
+			var products = JSON.parse(localStorage.getItem('carts'));
+			for(var i=0; i<products.length; i++){
+				var li = $('<li class="header-cart-item flex-w flex-t m-b-12"></li>');
+
+				var div_header_img = $('<div class="header-cart-item-img"></div>');
+				var img_tag = $('<img/>');	
+				$(img_tag).attr('src', products[i].image)
+				$(div_header_img).append(img_tag);
+
+				var div_header_txt = $('<div class="header-cart-item-txt p-t-8"></div>');
+				var a_tag = $('<a class="header-cart-item-name m-b-18 hov-cl1 trans-04"><a/>');
+				$(a_tag).text(products[i].name);
+				$(div_header_txt).append(a_tag);
+
+				var span_tag = $('<span class="header-cart-item-info"><span/>');
+				$(span_tag).text(products[i].quantity + "X" + products[i].cost);
+				$(div_header_txt).append(span_tag);
+
+				$(li).append(div_header_img);
+				$(li).append(div_header_txt);
+
+				$(ul).append(li);
+			}
+		}	
 	</script>
 	<script src="js/slick-custom.js"></script>
 </body>
